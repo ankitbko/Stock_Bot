@@ -14,42 +14,6 @@ namespace StockLuisDlg
     [Serializable]
     public class StockDialog : LuisDialog<object>
     {
-        private string lastStock;
-
-        [LuisIntent("StockPrice")]
-        public async Task StockPrice(IDialogContext context, LuisResult result)
-        {
-            string strRet = result.Entities[0].Entity;
-            lastStock = strRet;
-            //context.ConversationData.SetValue<string>("LastStock", strRet);
-
-            await context.PostAsync(await YahooStock.Yahoo.GetStock(strRet));
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent("RepeatLastStock")]
-        public async Task RepeatLastStock(IDialogContext context, LuisResult result)
-        {
-            string strRet = string.Empty;
-
-            //if (!context.ConversationData.TryGetValue("LastStock", out strStock))
-            if (string.IsNullOrWhiteSpace(lastStock))
-            {
-                strRet = "I don't have a previous stock to look up!";
-            }
-            else
-            {
-                strRet = await YahooStock.Yahoo.GetStock(lastStock);
-            }
-            await context.PostAsync(strRet);
-            context.Wait(MessageReceived);
-        }
-
-        [LuisIntent("None")]
-        public async Task NoneHandler(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync("I'm sorry, I don't understand");
-            context.Wait(MessageReceived);
-        }
+        
     }
 }
