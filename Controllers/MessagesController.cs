@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
 
 namespace LuisDialog_Stock_Bot
 {
@@ -21,7 +22,7 @@ namespace LuisDialog_Stock_Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Microsoft.Bot.Builder.Dialogs.Conversation.SendAsync(activity, () => new StockLuisDlg.StockDialog());
+                //await Conversation.SendAsync(activity, () => new StockLuisDlg.StockDialog());
             }
             else
             {
