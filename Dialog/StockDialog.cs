@@ -14,6 +14,11 @@ namespace StockLuisDlg
     [Serializable]
     public class StockDialog : LuisDialog<object>
     {
-        
+        [LuisIntent("None")]
+        public async Task NoneHandler(IDialogContext context, LuisResult result)
+        {
+            await context.PostAsync("I'm sorry, I don't understand");
+            context.Wait(MessageReceived);
+        }
     }
 }
