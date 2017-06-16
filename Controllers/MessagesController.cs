@@ -22,7 +22,7 @@ namespace LuisDialog_Stock_Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                //await Conversation.SendAsync(activity, () => new StockLuisDlg.StockDialog());
+                await Conversation.SendAsync(activity, () => new StockLuisDlg.StockDialog());
             }
             else
             {
